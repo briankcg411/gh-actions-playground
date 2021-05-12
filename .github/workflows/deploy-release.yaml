@@ -16,7 +16,6 @@ jobs:
         run: |
           echo "::set-output name=bundle_name::${GITHUB_REPOSITORY##*/}-app-${GITHUB_REF##*/*-}.tar.gz"
           echo "::set-output name=bundle_version::${GITHUB_REF##*/*-}"
-            - name: Download Release Bundle
 
       - name: Download Release Bundle
         uses: dsaltares/fetch-gh-release-asset@0.0.5
