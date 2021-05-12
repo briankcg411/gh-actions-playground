@@ -29,7 +29,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.RADBOT_GITHUB_API_TOKEN }}
       with:
         tag_name: ${{ github.ref }}
-        name: FlyBuy Staff/Kiosk App
+        name: (Alpha) FlyBuy Staff/Kiosk App
         draft: true
         prerelease: true
         body: |-
