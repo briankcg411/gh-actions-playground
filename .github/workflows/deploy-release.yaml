@@ -2,7 +2,7 @@ name: Deploy kiosk update
 
 on:
   release:
-    types: [published, released, edited]
+    types: [released]
 
 jobs:
   deploy-kiosk-update:
