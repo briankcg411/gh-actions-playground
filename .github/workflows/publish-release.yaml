@@ -20,5 +20,7 @@ jobs:
         echo "::set-output name=ref::${GITHUB_REF##*/}"
         echo "::set-output name=bundle_name::${GITHUB_REPOSITORY##*/}-${GITHUB_REF##*/}.tar.gz"
     - name: Creates github release
-      run: echo "Publishing pre-release to github"
+      run: |
+        echo "Publishing pre-release to github"
+        echo "${{ github.event.release.prerelease }}"
 

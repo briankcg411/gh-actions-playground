@@ -2,7 +2,7 @@ name: Deploy kiosk update
 
 on:
   release:
-    types: [published, edited]
+    types: [published, released, edited]
 
 jobs:
   deploy-kiosk-update:
@@ -18,4 +18,6 @@ jobs:
           echo "::set-output name=bundle_version::${GITHUB_REF##*/*-}"
 
       - name: Deploy release
-        run: echo "Deploying release to firebase"
+        run: |
+           echo "Deploying release to firebase:" 
+           echo "${{ github.event.release.prerelease }}"
