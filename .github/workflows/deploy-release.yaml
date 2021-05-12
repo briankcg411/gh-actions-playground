@@ -1,0 +1,21 @@
+name: Deploy kiosk update
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy-kiosk-update:
+    if: startsWith(github.ref, 'refs/tags/app-v') && "!github.event.release.prerelease"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Info
+        id: info
+        run: |
+          echo "::set-output name=bundle_name::${GITHUB_REPOSITORY##*/}-app-${GITHUB_REF##*/*-}.tar.gz"
+          echo "::set-output name=bundle_version::${GITHUB_REF##*/*-}"
+
+      - name: Deploy release
+        run: echo "Deploying release to firebase"

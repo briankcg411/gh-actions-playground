@@ -1,0 +1,46 @@
+name: Draft App Release
+
+on:
+  push:
+    tags:
+    - 'app-v[0-9]+.[0-9]+*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Generate build number
+      id: buildnumber
+      uses: einaregilsson/build-number@v3
+      with:
+        token: ${{secrets.github_token}}
+    - name: Set Info
+      id: info
+      run: |
+        echo "::set-output name=ref::${GITHUB_REF##*/}"
+        echo "::set-output name=bundle_name::${GITHUB_REPOSITORY##*/}-${GITHUB_REF##*/}.tar.gz"
+    - name: Release
+      id: release
+      uses: csexton/action-gh-release@test
+      env:
+        # Use RADBOT_GITHUB_API_TOKEN in secrets; otherwise, release action will not run. See https://twitter.com/GeertvdC/status/1183837353493893122
+        GITHUB_TOKEN: ${{ secrets.RADBOT_GITHUB_API_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        name: FlyBuy Staff/Kiosk App
+        draft: true
+        prerelease: true
+        body: |-
+          Bug Fixes:
+
+           - TODO: Describe any bug fixes
+
+          Enhancements:
+
+           - TODO: Describe any new features or enhancements
+
+          Deprecations:
+
+           - TODO: Describe any deprecations
