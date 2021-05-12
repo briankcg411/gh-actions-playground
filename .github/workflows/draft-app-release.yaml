@@ -21,6 +21,9 @@ jobs:
       run: |
         echo "::set-output name=ref::${GITHUB_REF##*/}"
         echo "::set-output name=bundle_name::${GITHUB_REPOSITORY##*/}-${GITHUB_REF##*/}.tar.gz"
+    - name: Generate test asset
+      id: asset
+      run: echo "qwerty" >> asset.txt
     - name: Release
       id: release
       uses: csexton/action-gh-release@test
@@ -44,3 +47,4 @@ jobs:
           Deprecations:
 
            - TODO: Describe any deprecations
+        files: asset.txt

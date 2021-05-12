@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy-kiosk-update:
-    if: ${{ startsWith(github.ref, 'refs/tags/app-v') && !github.event.release.prerelease }}
+    if: startsWith(github.ref, 'refs/tags/app-v')
 
     runs-on: ubuntu-latest
 
@@ -20,4 +20,4 @@ jobs:
       - name: Deploy release
         run: |
            echo "Deploying release to firebase:" 
-           echo "${{ github.event.release.prerelease }}"
+           cat test.txt
